@@ -1,4 +1,4 @@
-import React from 'react'
+
 type SummeryParams={
   totalTasks:number,
   CompletedTasks:number

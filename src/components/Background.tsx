@@ -1,5 +1,5 @@
 import {  useEffect, useRef, useState } from 'react';
-import background from '../assets/Images/background.png';
+import backgroundimg from '../assets/Images/background.png';
 
 
 import { MdEdit , MdDelete } from "react-icons/md";
@@ -157,7 +157,7 @@ let color: string ="";
         
         <div  className='relative flex  justify-center bg-black  col-span-2'>
           
-            <img src={background} className='h-screen w-full  '/>
+            <img src={backgroundimg} className='h-screen w-full  '/>
             <Title/>
             <Summery totalTasks={totalTasks} CompletedTasks={completedTasks} />
             
