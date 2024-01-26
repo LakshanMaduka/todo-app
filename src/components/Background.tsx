@@ -1,10 +1,13 @@
 import {  useEffect, useRef, useState } from 'react';
 import background from '../assets/Images/background.png';
-import title from '../assets/Images/title.png';
+
 
 import { MdEdit , MdDelete } from "react-icons/md";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import moment from "moment";
 import Paginations from './Paginations';
+import Title from './Title';
+import Summery from './Summery';
 
  interface item {
   id : number,
@@ -134,7 +137,7 @@ setTodo( todos.map((todo)=>{
 }
 //pagination 
 const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage , setPostPerPage] = useState(8);
+const postsPerPage :number =7;
 const lastIndex:number = currentPage* postsPerPage;
 const firstIndex:number =   lastIndex - postsPerPage;
 
@@ -150,24 +153,15 @@ useEffect(()=>{
 let color: string ="";
 
   return (
-    <div className='grid sm:grid-cols-3 items-center justify-center  md:mx-10 xl:mx-44'>
+    <div className='grid sm:grid-cols-3 items-center justify-center  md:mx-10 xl:mx-44 '>
         
         <div  className='relative flex  justify-center bg-black  col-span-2'>
-          <div className='grid h-[50px] grid-cols-2 xl:grid-cols-1 w-2/3 gap-10 xl:gap-0  justify-evenly items-center xl:h-[100px] xl:w-[200px] absolute p-2 xl:p-5 border-2 rounded-lg border-dark-brown xl:right-10 xl:top-10'>
-          <div className=' flex justify-between'>
-            <div>Total Tasks</div>
-            <div>{totalTasks}</div> 
-          </div>
-          <div className='flex justify-between'>
-            <div>Completed Tasks</div>
-            <div>{completedTasks}</div> 
-          </div>
-
-          </div>
+          
             <img src={background} className='h-screen w-full  '/>
-            <img src={title} className='absolute  w-[250px] object-cover mx-auto top-20' />
+            <Title/>
+            <Summery totalTasks={totalTasks} CompletedTasks={completedTasks} />
             
-            <div className='absolute h-[400px] w-full  top-40 mx-14'>
+            <div className='absolute h-[400px] w-full  top-36 mx-14'>
             <div className="w-full flex justify-center items-center">
             <Paginations  currentPage={currentPage} totalPosts = {todos.length} numberOfPosts = {postsPerPage} setCuttentPage={setCurrentPage}/>
             </div>
@@ -179,10 +173,10 @@ let color: string ="";
                   else {
                     color = "bg-dark-light-brown"
                   }
-                  return <div key={todo.id} className={` mx-20 ${color} bg-dark-brown rounded-lg p-2 m-2 flex justify-between items-center`}>
+                  return <div key={todo.id} className={` mx-20 ${color} font-Playpen bg-dark-brown rounded-lg p-2 m-2 flex justify-between items-center`}>
                   <div className='flex-grow'>
                   <div className='text-white text-xl'> {todo.text} </div>
-                  <div>{}</div> 
+                  <div className='text-sm text-white'>{moment(todo.date).format('lll')}</div> 
                   
                   </div>
                   <MdEdit className='mr-2 cursor-pointer text-xl text-orange-950' onClick={()=>{
@@ -210,9 +204,9 @@ let color: string ="";
             </div>
         </div>
         
-        <div className="mb-6 mx-2 sm:mx-10 hidden sm:block">
+        <div className="mb-6 mx-2 sm:mx-10 hidden sm:block font-Poppins">
         
-        <input type="email" ref={inputRefw} id="email"  className="bg-gray-50 border sm:relative   text-lg rounded-lg focus:outline-none w-full  focus:ring-2 focus:ring-dark-light-brown  mb-4 border-dark-brown  p-2.5  " placeholder="Add your task here..." required />
+        <input type="text" ref={inputRefw} id="text"  className="bg-gray-50 border sm:relative   text-lg rounded-lg focus:outline-none w-full  focus:ring-2 focus:ring-dark-light-brown  mb-4 border-dark-brown  p-2.5  " placeholder="Add your task here..." required />
         <button type="button" onClick={()=>{
              handleAddTask(inputRefw);
              

@@ -13,6 +13,10 @@ export default {
        'bg-ash' : '#D7CEB9'
       }
     },
+    fontFamily:{
+     Poppins: ["Poppins" , "sans-serif"],
+     Playpen: ["Playpen Sans", "cursive"]
+    }
   },
   plugins: [],
 }
